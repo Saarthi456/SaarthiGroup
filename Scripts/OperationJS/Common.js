@@ -83,7 +83,7 @@ function FillDropdownListFromSPJson(SP, Parameters, SetCodeControlId, isMultiDro
             if (data.Result == 1) {
                 if (!isMultiDrop) {
                     $("#" + SetCodeControlId).empty();
-                    $("#" + SetCodeControlId).empty().append('<option  value="">' + label("Common", "LabelCaption", "Select", "Select") + '</option>');
+                    $("#" + SetCodeControlId).empty().append('<option  value="">Select</option>');
                     //$("#" + SetCodeControlId).empty().append('<option  value="">Select</option>');
                 }
 
@@ -94,7 +94,7 @@ function FillDropdownListFromSPJson(SP, Parameters, SetCodeControlId, isMultiDro
             else {
                 if (!isMultiDrop) {
                     $("#" + SetCodeControlId).empty();
-                    $("#" + SetCodeControlId).empty().append('<option  value="">' + label("Common", "LabelCaption", "Select", "Select") + '</option>');
+                    $("#" + SetCodeControlId).empty().append('<option  value="">Select</option>');
                     //$("#" + SetCodeControlId).empty().append('<option  value="">Select</option>');
                 }
             }

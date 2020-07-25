@@ -102,6 +102,43 @@ function CheckMandatoryField(cntrlID, cntrlType) {
             return true;
         }
     }
+    else if (cntrlType == 'email') {
+        if ($.trim($("#" + cntrlID).val()) == '') {
+            $("#" + cntrlID).css('border', '1px solid #b94a48');
+            return false;
+        }
+        else {
+            var email = $.trim($("#" + cntrlID).val());
+            var emailReg = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+            if (!emailReg.test(email)) {
+                $("#" + cntrlID).css('border', '1px solid #b94a48');
+                return false;
+            }
+            else {
+                $("#" + cntrlID).css('border', '');
+                return true;
+            }
+        }
+    }
+
+    else if (cntrlType == 'mobile') {
+        if ($.trim($("#" + cntrlID).val()) == '') {
+            $("#" + cntrlID).css('border', '1px solid #b94a48');
+            return false;
+        }
+        else {
+            var mobile = $.trim($("#" + cntrlID).val());
+
+            if (mobile.length!=10) {
+                $("#" + cntrlID).css('border', '1px solid #b94a48');
+                return false;
+            }
+            else {
+                $("#" + cntrlID).css('border', '');
+                return true;
+            }
+        }
+    }
 
     return true;
 }
@@ -468,7 +505,6 @@ function GetHtmlfromModelstring(str) {
     str = str.replace(/&nbsp;/g, '&amp;nbsp;');
     return str;
 }
-
 
 function isContainReservedChar(inputString) {
     var isContain = false;

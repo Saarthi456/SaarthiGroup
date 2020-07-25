@@ -159,6 +159,7 @@
     <Compile Include="Classes\clsFarmer.cs" />
     <Compile Include="Classes\clsVendor.cs" />
     <Compile Include="Controllers\APMCController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\FarmerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -2623,13 +2624,18 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_APMC.cshtml" />
+    <Content Include="Views\Users\_Vendor.cshtml" />
+    <Content Include="Views\Users\_Farmer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\js\core\libraries\jquery_ui\globalize\" />
     <Folder Include="css\dropzone\images\WallImages\" />
     <Folder Include="Images\ProfileImages\1\" />
-    <Folder Include="Upload\" />
+    <Folder Include="Upload\APMC\" />
+    <Folder Include="Upload\Farmer\" />
+    <Folder Include="Upload\Vendor\" />
     <Folder Include="Views\APMC\" />
     <Folder Include="Views\Farmer\" />
     <Folder Include="Views\Vendor\" />
