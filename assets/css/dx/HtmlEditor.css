@@ -1,0 +1,11 @@
+﻿.dxrControl_Material .dxr-tabContent {
+    border:none;
+    border-top-width: 0px;
+    height: 163px;
+    background: #FAFAFA;
+}
+
+.dxrControl_Material .dxr-groupList .dxr-group {
+    margin: 5px 10px 0 10px;
+    text-align: center;
+}

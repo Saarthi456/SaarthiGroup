@@ -1,0 +1,99 @@
+﻿<div class="panel-heading border-top-lg border-top-teal">
+    <h4 class="panel-title text-bold" style="width:35%">
+        <i class="icon-grid3 position-left"></i>@ResourceSettings.getResourceLable(AppSession.ModuleName, "Breadcum", @ViewBag.ScreenName, @ViewBag.ScreenName) 
+        <label id="lblGridCount" class="text-bold">(@AppSession.viewRowCount)</label>
+</h4>
+
+    <div class="heading-elements panel-nav">
+        <ul class="nav nav-pills">
+            <li>
+                <button id="btnGridAdd" type="button" class="btn btn-success btn-icon" data-popup="tooltip" data-container="body" data-original-title="Add New Record ( Alt+A )">
+                    <i class="icon-plus2"></i>
+                </button>
+            </li>
+            <li>
+                <button id="btnGridRemove" type="button" class="btn btn-danger btn-icon" data-popup="tooltip" data-container="body" data-original-title="Remove Record ( Alt+D )">
+                    <i class="icon-cross3"></i>
+                </button>
+            </li>
+            <li>
+                <button id="btnGridMultiSearch" type="button" class="btn btn-default btn-icon" data-popup="tooltip" data-container="body" data-original-title="Multi Search">
+                    <i class="fa fa-binoculars text-blue" style="font-size:18px"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridCustomSearch" type="button" class="btn btn-teal btn-icon" data-popup="tooltip" data-container="body" data-original-title="Custom Search">
+                    <i class="icon-zoomin3"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridLoadRecords" type="button" class="btn bg-teal-400 btn-icon" data-popup="tooltip" data-container="body" data-original-title="Load Records">
+                    <i class="icon-grid3"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridExcel" type="button" class="btn bg-green-400 btn-icon" data-popup="tooltip" data-container="body" data-original-title="Export to EXCEL">
+                    <i class="icon-file-excel"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridPDF" type="button" class="btn btn-danger btn-icon" data-popup="tooltip" data-container="body" data-original-title="Export to PDF">
+                    <i class="icon-file-pdf"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridPrint" type="button" class="btn bg-purple-400 btn-icon" data-popup="tooltip" data-container="body" data-original-title="PRINT ( Alt+P )">
+                    <i class="icon-printer2"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridMail" type="button" class="btn bg-slate btn-icon" data-popup="tooltip" data-container="body" data-original-title="MAIL">
+                    <i class="icon-mail5"></i>
+                </button>
+            </li>
+
+            <li>
+                <button id="btnGridSetting" type="button" class="btn btn-info btn-icon" data-popup="tooltip" data-container="body" data-original-title="SETTING">
+                    <i class="icon-cog3"></i>
+                </button>
+            </li>
+
+            <li>
+                <div class="checkbox ml-10">
+                    <label>
+                        <input id="chkExactMatch" type="checkbox" class="control-success">
+                    </label>
+                </div>
+            </li>
+
+            <li style="width:200px;margin-left:15px">
+                <div class="form-group ml-5">
+                    <select id="ddlGridFilter" name="ddlGridFilter" data-placeholder="Select" class="select">
+                        <option value="">select</option>
+                    </select>
+                </div>
+            </li>
+
+            <li>
+                <input id="GridtxtSearch" type="text" class="form-control text-size-large ml-10" />
+            </li>
+
+            <li>
+                <button id="btnGridDropSearch" type="button" class="btn btn-default btn-icon ml-15" data-popup="tooltip" data-container="body" data-original-title="Search">
+                    <i class="icon-search4 text-teal-700"></i>
+                </button>
+                <button id="btnGridClearSearch" type="button" class="btn btn-default btn-icon ml-5" data-popup="tooltip" data-container="body" data-original-title="Clear Filter">
+                    <i class="icon-cross2 text-danger-700"></i>
+                </button>
+            </li>
+
+
+        </ul>
+    </div>
+</div>

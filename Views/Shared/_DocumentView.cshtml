@@ -1,0 +1,29 @@
+﻿
+<div class="modal fade" id="popupProof" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 20px 20px 5px 15px;border-bottom: 1px solid #d8d8d8;">
+                <button type="button" class="close" aria-label="Close" id="btnClosepopupProof">
+                    <img src="~/images/close-btn.png" alt="">
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Document View</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-border">
+                    @{
+                        var args = new Dictionary<string, string>();
+                        if (Model.FileCount != null)
+                        {
+                            args["FileCount"] = Model.FileCount.ToString();
+                            args["DivId"] = "MainDiv";
+                        }
+                    }
+                    @if (Model.FileCount != null)
+                    {
+                        @Html.Partial("~/Views/Shared/_DocumentSlider.cshtml", args)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

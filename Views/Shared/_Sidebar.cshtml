@@ -1,0 +1,14 @@
+﻿@model EGovernance.Models.Sidebar
+
+<li class="navigation-header">
+    <a href="JavaScript:void(0);" class="main">
+        <i class="icon-list-unordered"></i> 
+        <span>
+            @ResourceSettings.getResourceLable("Common", "LabelCaption", "Version", "Version")
+            <span class="label bg-blue-400">@Model.Version</span>
+        </span>
+    </a>
+</li>
+
+
+@Html.Raw(Model.strHTML)

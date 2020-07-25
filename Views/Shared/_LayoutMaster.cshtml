@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>i-Governance</title>
+    <link rel="QC icon" href="~/assets/images/QC.ico" />
+    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/icon")
+    @if (IsSectionDefined("styles"))
+    {
+        @RenderSection("styles", required: false)
+    }
+
+</head>
+<body class="navbar-top">
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li class="imglogo">
+                    <a href="~/Dashboard/Index"><img id="imgLogo" class="img-responsive" src="" style="min-width:40px;max-width: 100%;max-height: 30px;" /></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="ddlLanguage" class="dropdown language-switch"></li>
+
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img id="imgUserProfile" src="" AlternateText="PROFILE" />
+                        <span>@AppSession.UserName.ToUpper()</span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="~/Login/Logout"><i class="icon-switch2"></i>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <!-- Page header -->
+                @RenderSection("breadcum", required: false)
+
+                <!-- /page header -->
+                <!-- Content area -->
+                <div class="content">
+                    @RenderBody()
+
+                    <div id="divLoading" class="loader" style="display:none">
+                        <i class="icon-spinner9 spinner"></i>
+                    </div>
+
+                    <!-- /content area -->
+                    <!-- Footer -->
+                    <div class="navbar navbar-default navbar-fixed-bottom">
+                        <ul class="nav navbar-nav no-border visible-xs-block">
+                            <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second"><i class="icon-circle-up2"></i></a></li>
+                        </ul>
+                        <div class="navbar-collapse collapse" id="navbar-second">
+                            <div class="navbar-text">
+                                © 2019. <a href="JavaScript:void(0);">i-Governance</a> Powered by <a href="JavaScript:void(0);" target="_blank">Mercury Infoway</a>
+                            </div>
+                            <div class="navbar-right">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="JavaScript:void(0);">Version</a></li>
+                                    <li><a href="JavaScript:void(0);">1.0.0.1</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /footer -->
+                </div>
+                <!-- /Main content -->
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+    <!-- /page container -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/ThemeJS")
+    @Scripts.Render("~/bundles/MasterJSCustom")
+    <script src="~/Scripts/select2-tab-fix.js"></script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        var lstResource = $.parseJSON('@Html.Raw(Json.Encode(Common.lstResource))');
+        var CurrentPagePath = encodeURIComponent(location.pathname);
+        var Vdir = '@System.Web.Configuration.WebConfigurationManager.AppSettings["VirtualDirectoryName"]';
+        var ClientLogoURL = "";
+        var UserProfileURL = "";
+
+
+        $(document).ajaxStart(function () {
+            $("#divLoading").show();
+        }).ajaxStop(function () {
+            $("#divLoading").hide();
+        }).ajaxComplete(function () {
+            $("#divLoading").hide();
+        }).ajaxError(function (event, xhr, options, exc) {
+        });
+
+        $(document).ready(function () {
+            FillLanguage("", "", "");
+            if (ClientLogoURL != '' && ClientLogoURL != undefined) {
+                $("#imgLogo").attr("src", "");
+                $("#imgLogo").attr("src", ITX3ResolveUrl(ClientLogoURL));
+            }
+            else {
+                $("#imgLogo").attr("src", "");
+                $("#imgLogo").attr("src", ITX3ResolveUrl("~/Images/ClientsLogo/clogo.png"));
+            }
+
+            if (UserProfileURL != '' && UserProfileURL != undefined) {
+                $("#imgUserProfile").attr("src", "");
+                $("#imgUserProfile").attr("src", ITX3ResolveUrl(UserProfileURL));
+            }
+            else {
+                $("#imgUserProfile").attr("src", "");
+                $("#imgUserProfile").attr("src", ITX3ResolveUrl("~/Images/ProfileImages/NoUser.png"));
+            }
+        });
+
+        function ITX3ResolveUrl(pUrl) {
+            debugger;
+            if (pUrl) {
+                if (pUrl.substr(0, 2) == '~/')
+                    pUrl = pUrl.substr(2, pUrl.length - 2);
+            }
+            var newUrl = '';
+            if (typeof HasPath != 'undefined' && HasPath) {
+                var pathArray = window.location.pathname.split('/');
+                newUrl = location.protocol + '//' + location.host + '/' + pathArray[1] + ((pUrl) ? '/' + pUrl : '/');
+            }
+            else {
+                newUrl = location.protocol + '//' + location.host + '/' + Vdir + ((pUrl) ? pUrl : '/');
+            }
+            return newUrl;
+        }
+
+    </script>
+</body>
+
+</html>

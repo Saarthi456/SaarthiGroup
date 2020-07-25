@@ -1,0 +1,219 @@
+﻿@using EGovernance.Helper
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>i-Governance</title>
+        <link rel="QC icon" href="~/assets/images/QC.ico" />
+        @Styles.Render("~/bundles/css")
+        @Styles.Render("~/bundles/icon")
+        @if (IsSectionDefined("styles"))
+        {
+            @RenderSection("styles", required: false)
+        }
+
+    </head>
+    <body class="navbar-top">
+        <!-- Main navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-collapse collapse" id="navbar-mobile">
+                <ul class="nav navbar-nav">
+                    <li class="imglogo">
+                        <a href="~/Dashboard/Index"><img id="imgLogo" class="img-responsive" src="" style="min-width:40px;max-width: 100%;max-height: 30px;" /></a>
+                    </li>
+                    <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+                    <li><h4 class="panel-title text-bold mt-10">@ResourceSettings.getResourceLable(@AppSession.ModuleName, "Breadcum", @AppSession.ModuleName, @AppSession.ModuleName) </h4></li>
+                    <li><a href="JavaScript:void(0);" class="panel-title text-bold mt-2" onclick="RedirectToDashboard()"><i class="icon-home2"></i></a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li style="padding-top:13px;margin-right:15px">
+                        <span class="text-semibold" style="font-size:14px">@ResourceSettings.getResourceLable("Common", "LabelCaption", "Year", "Year")</span>
+                    </li>
+                    <li id="liYear" class="dropdown" style="width:200px;padding-top:5px;font-weight:bold">
+                        <select id="ddlYear" name="ddlClient" class="select" style="font-size:13px"></select>
+                    </li>
+                    <li id="ddlLanguage" class="dropdown"></li>
+
+                    <li class="dropdown dropdown-user">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <img id="imgUserProfile" src="" AlternateText="PROFILE" />
+                            <span>@AppSession.UserName.ToUpper()</span>
+                            <i class="caret"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="~/Login/Logout"><i class="icon-switch2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navbar -->
+
+        <div class="page-container">
+            <div class="page-content">
+                <div class="sidebar sidebar-main">
+                    <div class="sidebar-content">
+                        <div class="sidebar-category sidebar-category-visible">
+                            <div class="category-content no-padding">
+                                <ul class="navigation navigation-main navigation-accordion">
+                                    @Html.DynamicMenuBinding()
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    @RenderSection("breadcum", required: false)
+                    <div class="content">
+                        @RenderBody()
+                        <div id="divLoading" class="loader" style="display:none">
+                            <i class="icon-spinner9 spinner"></i>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="navbar navbar-default navbar-fixed-bottom">
+                            <ul class="nav navbar-nav no-border visible-xs-block">
+                                <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second"><i class="icon-circle-up2"></i></a></li>
+                            </ul>
+                            <div class="navbar-collapse collapse" id="navbar-second">
+                                <div class="navbar-text">
+                                    © 2019. <a href="JavaScript:void(0);">i-Governance</a> Powered by <a href="JavaScript:void(0);" target="_blank">Mercury Infoway</a>
+                                </div>
+                                <div class="navbar-right">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="JavaScript:void(0);">Version</a></li>
+                                        <li><a href="JavaScript:void(0);">1.0.0.1</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /footer -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <link href="~/assets/css/main_color_style.css" rel="stylesheet" />
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/ThemeJS")
+        @Scripts.Render("~/bundles/MasterJSCustom")
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Scripts/select2-tab-fix.js"></script>
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            var lstResource = $.parseJSON('@Html.Raw(Json.Encode(Common.lstResource))');
+            var CurrentPagePath = encodeURIComponent(location.pathname);
+
+            var Vdir = '@System.Web.Configuration.WebConfigurationManager.AppSettings["VirtualDirectoryName"]';
+            var ClientLogoURL = "";
+            var UserProfileURL = "";
+            var CurrentYear = '@AppSession.CurrentYear';
+            var ModuleId = '@AppSession.ModuleID';
+            var ModuleName = '@AppSession.ModuleName';
+            var ModuleEncryptID = '@AppSession.ModuleEncryptID';
+
+            $(document).ajaxStart(function () {
+                $("#divLoading").show();
+            }).ajaxStop(function () {
+                $("#divLoading").hide();
+            }).ajaxComplete(function () {
+                $("#divLoading").hide();
+            }).ajaxError(function (event, xhr, options, exc) {
+            });
+
+            $(document).ready(function () {
+                FillLanguage("", "", "");
+
+                FillDropdownListFromSPJson("ClientSP", "@@Action=FillYear,@@Id=" + ModuleId + "", "ddlYear");
+                var CountOption = $('#ddlYear option').size();
+                if (CountOption > 2) {
+                    $("#ddlYear option").first().remove().select2();
+                    $("#ddlYear").val(CurrentYear).trigger('change');
+                }
+
+                if (ClientLogoURL != '' && ClientLogoURL != undefined) {
+                    $("#imgLogo").attr("src", "");
+                    $("#imgLogo").attr("src", ITX3ResolveUrl(ClientLogoURL));
+                }
+                else {
+                    $("#imgLogo").attr("src", "");
+                    $("#imgLogo").attr("src", ITX3ResolveUrl("~/Images/ClientsLogo/clogo.png"));
+                }
+                if (UserProfileURL != '' && UserProfileURL != undefined) {
+                    $("#imgUserProfile").attr("src", "");
+                    $("#imgUserProfile").attr("src", ITX3ResolveUrl(UserProfileURL));
+                }
+                else {
+                    $("#imgUserProfile").attr("src", "");
+                    $("#imgUserProfile").attr("src", ITX3ResolveUrl("~/Images/ProfileImages/NoUser.png"));
+                }
+            });
+
+            function ITX3ResolveUrl(pUrl) {
+                if (pUrl) {
+                    if (pUrl.substr(0, 2) == '~/')
+                        pUrl = pUrl.substr(2, pUrl.length - 2);
+                }
+                var newUrl = '';
+                if (typeof HasPath != 'undefined' && HasPath) {
+                    var pathArray = window.location.pathname.split('/');
+                    newUrl = location.protocol + '//' + location.host + '/' + pathArray[1] + ((pUrl) ? '/' + pUrl : '/');
+                }
+                else {
+                    newUrl = location.protocol + '//' + location.host + '/' + Vdir + ((pUrl) ? pUrl : '/');
+                }
+                return newUrl;
+            }
+
+            function RedirectToDashboard() {
+                var url = ITX3ResolveUrl('~/Master/' + ModuleName + '?MenuId=' + ModuleEncryptID + '?' + ModuleName);
+                location.href = url;
+            }
+
+            jQuery(document).ready(function () {
+                var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
+                var purl = pgurl.split('?');
+                jQuery(".navigation li a").each(function () {
+                    if (jQuery(this).attr("href") != undefined && jQuery(this).attr("href").indexOf(purl[purl.length - 1]) > -1 && purl[purl.length - 1] !="Account") {
+                        jQuery(".navigation li").removeClass("activemenu");
+                        jQuery(this).addClass("activemenu");
+                        $(this).parent().parent().addClass('disblk');
+                        $(this).parent().parent().parent().addClass('active');
+                        //var menuid = jQuery(this).attr('id');
+                        //jQuery("#menu" + menuid).addClass("activemenu");
+                    }
+                })
+            });
+
+
+        </script>
+    </body>
+
+</html>
+<style>
+    .navigation > li > ul li:first-child {
+        padding-top: 0px !important;
+    }
+
+    .navigation > li > ul li:last-child {
+        padding-bottom: 0px !important;
+    }
+    .activemenu {
+        background: #bb0028 none repeat scroll 0 0;
+        /*--active-menu-color: #26a69a;
+        --active-submenu-color: #bb0028;*/
+    }
+    .activemenuhead {
+        /*background: #bb0028 none repeat scroll 0 0;*/
+        /*background-color: #26A69A;
+        color: #fff;*/
+    }
+    .disblk {
+        display: block !important;
+    }
+    
+</style>

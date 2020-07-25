@@ -1,0 +1,604 @@
+﻿
+/*dashboardModule background image change*/
+/*main menu circle*/
+
+:root {
+    --color-1: #03396C;
+    --color-2: #03396C;
+    --dashboardModule-hover-color: #ccc;
+    --active-menu-color: #26a69a;
+    --tabulator-hover-color: #f3f3f3;
+    --tabulator-selected-bg-color: #9ccc65;
+    --tabulator-selected-font-color: #fff;
+    --form-textbox-border-color: #000;
+    --form-textbox-focus-color: #000000c2;
+    --toolbar-hover-color: #0000008f;
+}
+
+body * {
+    z-index: 1;
+}
+
+.panel-heading .heading-elements ul li button:hover {
+    box-shadow: 0 0 10px 0 var(--toolbar-hover-color);
+}
+
+.tabulator-row.tabulator-selected {
+    background-color: var(--tabulator-selected-bg-color);
+    color: var(--tabulator-selected-font-color);
+}
+
+.form-control, .select2-selection--single:not([class*=bg-]):not([class*=border-]), .input-group-addon {
+    border: 1px solid var(--form-textbox-border-color);
+}
+
+.panel-heading .heading-elements ul li button:hover {
+    box-shadow: 0 0 10px 0 #0000008f;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 3px 1px var(--form-textbox-focus-color);
+}
+
+.navigation > li ul li.active {
+    background: var(--active-menu-color);
+}
+
+.dashboardModule {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+    .dashboardModule:before {
+        content: "";
+        background: var(--dashboardModule-hover-color);
+        position: absolute;
+        left: 50%;
+        right: 0;
+        top: 50%;
+        bottom: 0;
+        z-index: 0;
+        width: 0;
+        height: 0;
+        transition: 0.5s all;
+        opacity: 0.4;
+    }
+
+    .dashboardModule * {
+        z-index: 1;
+        position: relative;
+    }
+
+.toolPanel-icon {
+    margin-top: 30px;
+}
+
+    .toolPanel-icon .btn {
+        margin: 0 0px;
+        text-align: center;
+        opacity: 1;
+        padding: 10px 15px;
+        box-shadow: 0 0 0 0 #00000069;
+        transition: 0.5s all;
+    }
+
+        .toolPanel-icon .btn i {
+            font-size: 13px;
+            margin: 0 4px;
+        }
+
+        .toolPanel-icon .btn:hover {
+            box-shadow: 0 0 10px 0 var(--toolbar-hover-color);
+        }
+
+.dashboardModule:hover:before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tabulator .tabulator-footer .tabulator-paginator button {
+    padding: 6px 15px;
+    border: 1px solid #d4c9c9;
+    color: #333;
+    transition: 0.3s all;
+    background: #fff;
+}
+
+.tabulator .tabulator-footer .tabulator-page.active {
+    background: var(--color-1) !important;
+    color: #fff !important;
+    border: 1px solid var(--color-1);
+}
+
+.sidebar-xs .sidebar-main .navigation > li > a > span {
+    background: var(--color-1);
+    border: 1px solid var(--color-1);
+}
+
+
+.tabulator .tabulator-header .tabulator-col {
+    background: var(--color-1) !important;
+    text-align:center;
+}
+
+.border-top-teal {
+    border-top-color: var(--color-1) !important;
+}
+
+.tabulator .tabulator-footer .tabulator-paginator button:hover {
+    background: var(--color-1) !important;
+    border: 1px solid var(--color-1) !important;
+}
+
+.panel-heading .heading-elements ul li button {
+    padding: 12px 20px;
+    margin: 0 2px;
+}
+
+.tabulator .tabulator-footer .tabulator-paginator button[disabled] {
+    cursor: not-allowed !important;
+}
+
+.navigation li a {
+    border-bottom: 1px solid #fff;
+    padding: 15px 20px;
+}
+
+.tabulator .tabulator-footer .tabulator-paginator label {
+    display: inline-block;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.tabulator .tabulator-footer .tabulator-paginator select {
+    height: 33px;
+    border: 1px solid #d4c9c9;
+    color: #333;
+    transition: 0.3s all;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    font-weight:bold;
+}
+.input-group {
+    font-weight: bold;
+}
+
+.tabulator .tabulator-footer {
+    border-top: 1px dotted #b1b1b1;
+}
+
+.navbar-inverse {
+    background: var(--color-2);
+}
+
+.sidebar {
+    background: var(--color-2);
+}
+
+.sidebar-xs .sidebar-main .navigation > li > ul {
+    background-color: var(--color-2);
+}
+
+.heading-elements {
+    position: inherit;
+    top: 0;
+    right: 0;
+    height: auto;
+}
+
+.panel-white > .panel-heading {
+    display: flex;
+    align-items: center;
+}
+
+    .panel-white > .panel-heading .panel-title {
+        width: 15% !important;
+    }
+
+    .panel-white > .panel-heading .heading-elements {
+        width: 85%;
+        text-align: right;
+    }
+
+        .panel-white > .panel-heading .heading-elements ul {
+            text-align: right;
+            width: 100%;
+            margin: 0;
+        }
+
+.login-form .login-form-inner .site-logo img {
+    max-width: 150px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-image: url(../images/main-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    body.login-container {
+        background-image: url(../images/login-bg.jpg);
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    body:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        background: #00000069;
+    }
+
+
+/*main menu circle*/
+.dashboardModule .icon-object {
+    border: none;
+}
+
+    .dashboardModule .icon-object img {
+        max-width: 100%;
+        width: 80px;
+        /*object-fit: cover;
+        object-position: center;*/
+        height: 80px;
+    }
+
+
+/*dashboardModule background image change*/
+.fixed-height-box {
+    min-height: 775px;
+    align-items: start !important;
+    background-image: url(../images/login-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login-form .bg-teal {
+    background: var(--color-1);
+}
+
+.login-form .bg-slate {
+    background: var(--color-2);
+}
+
+
+.login-form {
+    width: 1000px !important;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    padding: 15px !important;
+    max-width: 100%
+}
+
+    .login-form .login-form-right {
+        width: 50%;
+        text-align: right;
+        position: relative;
+        padding: 40px 30px;
+    }
+
+        .login-form .login-form-right:after {
+            content: "";
+            position: absolute;
+            top: -370px;
+            bottom: 0;
+            right: -120px;
+            background-image: url(../images/login-form-img.jpg);
+            transform: skewY(20deg);
+            transform: rotate(-47deg);
+            height: 990px;
+            width: 530px;
+            z-index: 0;
+        }
+
+        .login-form .login-form-right * {
+            z-index: 1;
+            position: relative;
+        }
+
+        .login-form .login-form-right .title {
+            font-size: 50px;
+            color: #fff;
+            text-shadow: 1px 4px 5px #000;
+        }
+
+    .login-form .login-form-inner {
+        width: 50%;
+        padding: 10px 30px !important;
+    }
+
+    .login-form input {
+        background: #fff !important;
+        padding-right: 12px;
+        padding-left: 36px;
+    }
+
+.form-control-feedback {
+    height: 40px !important;
+    line-height: 40px !important;
+}
+
+.login-form h5 {
+    margin: 0;
+    text-align: left;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0 0 10px 0 !important;
+}
+
+.login-form span.create-acc {
+    text-align: left;
+    display: block;
+    margin-bottom: 30px;
+}
+
+    .login-form span.create-acc a.content-group {
+        color: var(--color-1);
+    }
+
+
+.login-form .login-form-inner input {
+    height: 45px;
+}
+
+.login-form .login-form-inner .form-control-feedback {
+    height: 45px !important;
+    line-height: 45px !important;
+}
+
+.tabulator-row.tabulator-selectable:hover {
+    background: var(--tabulator-hover-color) !important;
+}
+
+
+.login-form .login-form-inner .form-group .select2-container span.select2-selection {
+    padding: 12px 0;
+    height: 45px;
+}
+
+.login-form .login-form-inner .form-group {
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.login-form .login-form-inner a {
+    color: var(--color-1);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.login-form .login-form-inner .form-group button.btnLogin {
+    display: inline-block;
+    float: right;
+    border: 1px solid var(--color-1);
+    width: 214px;
+    height: 54px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+    .login-form .login-form-inner .form-group button.btnLogin:hover {
+        background: #fff;
+        color: var(--color-1);
+    }
+
+    .login-form .login-form-inner .form-group button.btnLogin i {
+        position: relative;
+        right: 0;
+        transition: 0.5s all;
+    }
+
+    .login-form .login-form-inner .form-group button.btnLogin:hover i {
+        right: -10px;
+        transition: 0.5s all;
+    }
+
+.same-size-btn button {
+    width: 105px;
+}
+
+
+.border-teal {
+    border-color: var(--color-1);
+}
+
+.text-teal-400, .text-teal-400:hover, .text-teal-400:focus {
+    color: var(--color-1) !important;
+}
+
+.border-teal-400 {
+    border-color: var(--color-1);
+}
+
+.border-blue-400 {
+    border-color: var(--color-1);
+    color: var(--color-1) !important;
+}
+
+.border-blue {
+    border-color: var(--color-1);
+}
+
+.text-blue-400, .text-blue-400:hover, .text-blue-400:focus {
+    color: var(--color-1) !important;
+}
+
+.border-top-teal {
+    border-top-color: var(--color-1);
+}
+
+.bg-teal-400 {
+    background-color: var(--color-1);
+    border-color: var(--color-1);
+}
+
+.dashboardModule .text-center img.main-icon-img {
+    width: 78px;
+    height: 78px;
+    margin: 10px;
+    object-fit: contain;
+    object-position: center;
+}
+div#dvmultipleRow .row > div select, div#dvmultipleRow .row > div input[type="text"] {
+    width: 100% !important;
+    height: 40px !important;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+}
+
+
+div#dvmultipleRow .row > div .form-group.p10 button {
+    margin-right: 5px;
+}
+
+    div#dvmultipleRow .row > div .form-group.p10 button:last-child {
+        margin: 0;
+    }
+
+.form-group input[type="text"] {
+    width: 100% !important;
+}
+
+
+.fixed-height-box .row .col-md-9 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .fixed-height-box .row .col-md-9 a {
+        width: 16.66%;
+    }
+
+        .fixed-height-box .row .col-md-9 a .col-md-2 {
+            width: 100%;
+        }
+.content {
+    /*padding: 0 10px 60px 10px;*/
+    padding: 0 10px 60px 0px;
+}
+
+.page-header-default {
+    margin-bottom: 1px;
+}
+
+/* main_card css */
+.main_card {
+display: flex;
+max-width: 98%;
+margin: 0 auto;
+}
+
+.main_card ul.count-main {
+width: 40%;
+display: flex;
+margin: 0;
+align-items: center;
+}
+
+    .main_card .box_card {
+        width: 60%;
+        padding-right: 30px;
+    }
+
+.main_card ul.count-main li.count-list {
+width: 100%;
+margin: 0 !important;
+}
+
+.main_card .box_card ul {
+padding: 10px 20px;
+list-style: none;
+display: inline-block;
+border: 1px solid #ccc;
+margin-bottom: 20px;
+width: 100%;
+margin: 20px 0;
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.main_card .box_card ul li {
+padding: 10px 0;
+border-bottom: 1px solid #eae6e6;
+font-size: 17px;
+}
+
+.main_card .box_card ul li:nth-child(even) {
+}
+
+.main_card .box_card ul li:last-child {
+border-bottom: 0;
+}
+ul.count-main.child_header li.count-list {
+    width: 100%;
+    margin: 0 !important;
+}
+div#tblGrid,tblExams {
+    overflow: auto;
+}
+
+@media only screen and (max-width: 1460px) {
+    ul.count-main li.count-list {
+        width: 50%
+    }
+    .modal-dialog .modal-content .modal-title {
+        font-size: 25px;
+    }
+    ul.count-main li.count-list .title {
+        font-size: 18px;
+        margin: 5px 0 20px 0;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .modal-dialog {
+        width: 100%;
+    }
+}
+
+
+button.back-btn i.icon-circle-left2 {
+    margin: 0 4px 0 0;
+    transition: 0.5s all;
+}
+
+button.back-btn:hover i.icon-circle-left2 {
+    margin: 0 10px 0 0;
+}
+button.btn.btn-primary.close-btn {
+    background: #ed1c24;
+    border-color: #ed1c24;
+}
+button.btn.btn-primary.close-btn i.icon-close2 {
+    margin-left: 5px;
+}
+.modal-footer {
+    padding-top: 20px;
+}
+.bg-info th {
+    text-align: center;
+}
+.filebackColor {
+    background: lightcyan;
+}

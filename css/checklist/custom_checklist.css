@@ -1,0 +1,115 @@
+﻿
+.tabBodyMain {
+    border: 0px !important;
+}
+
+    .tabBodyMain > .panel-body {
+        padding: 0px !important;
+    }
+
+.BasicInfo .panel-body {
+    /*padding: 10px 10px 0px 10px !important;*/
+    padding: 5px 5px 0px 5px !important;
+}
+
+.BasicInfo .panel {
+    margin-bottom: 0px;
+}
+
+.RejectionRule .panel-body {
+    padding: 10px 10px 0px 10px !important;
+    /*padding: 5px 5px 0px 5px !important;*/
+}
+
+.RejectionRule .panel {
+    margin-bottom: 0px;
+}
+
+.divDropable .panel-body {
+    padding: 10px 10px 0px 10px !important;
+}
+
+.divDropable .panel {
+    margin-bottom: 0px;
+}
+
+#divModal_Template .modal-lg {
+    width: 60% !important;
+}
+
+.ui-state-highlight {
+    background: none !important;
+    border: 1px solid #aaaaaa !important;
+}
+
+#ctlDestination li, #ctlSource li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+#ctlDestination {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 2.5em;
+    float: left;
+    margin-right: 10px;
+    width: 500px;
+}
+
+#ctlSource {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 2.5em;
+    float: left;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.ClearCtl {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    font: bold 17px arial;
+    color: #666;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.DynamicDropDown {
+    float: right;
+    margin-right: 40px;
+    width: 150px;
+    height: 23px;
+}
+
+.UploadCtrl {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    font: bold 17px arial;
+    color: #666;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.GeneralSettingCheckbox {
+    width: 75%;
+    left: 25%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.dz-details {
+    /*display: none !important;*/
+}
+
+#divAddControl {
+    cursor: pointer;
+}
+
+.displayNon{
+    display:none;
+}

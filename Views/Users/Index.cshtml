@@ -1,0 +1,637 @@
+﻿@using Westwind.Globalization
+@using System.Threading
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAARTHI-REGISTRATION</title>
+    <link rel="QC icon" href="~/assets/images/QC.ico" />
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+
+    <link href="~/css/icomoon-style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/main_color_style.css" rel="stylesheet" />
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/assets/js/plugins/loaders/pace.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/notifications/sweet_alert.min.js"></script>
+    <script src="~/assets/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/OperationJS/Common.js"></script>
+    <script src="~/Scripts/OperationJS/FormOperations.js"></script>
+    <style type="text/css">
+        .login-form {
+            width: 90% !important;
+            padding: 10px !important;
+        }
+        .login-form h5 {
+            font-size: 24px !important;
+        }
+        .login-form .login-form-inner {
+            width: 100% !important;
+        }
+        .sweet-alert h2 {
+            color: red;
+        }
+       .login-form .login-form-inner input {
+            height: 30px !important;
+        }
+       .login-form input {
+            background: #fff !important;
+            padding-right: 12px;
+            padding-left: 10px !important;
+        }
+       .form-control {
+            height: 30px !important;
+            padding: 2px 5px !important;
+            font-size: 12px;
+            line-height: 1.5384616;
+            color: #333333;
+            border:1px solid slategray !important;
+        }
+
+        .form-control:focus {
+            border:1px double blue !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+        }
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            position: relative;
+            min-height: 1px;
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+        .text-size-large {
+            font-size: 12px !important;
+        }
+    </style>
+
+</head>
+<body class="login-container bg-slate-800">
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content area -->
+                <div class="content">
+                    <!-- Advanced login -->
+                    <form action="#">
+                        <div class="panel panel-body login-form">
+                            <div class="login-form-inner">
+                                <div class="form-group login-options">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h5 class="content-group-lg">Registration For</h5>
+                                        </div>
+                                        <div class="col-sm-5 text-left">
+                                            <button class="btn btn-active" style="background-color:teal;color:white;font-weight:600"><i class="icon-city"></i> APMC</button>
+                                            <button class="btn"><i class="icon-user-tie"></i> VENDOR</button>
+                                            <button class="btn"><i class="icon-user"></i> FARMER</button>
+                                        </div>
+                                        <div class="col-sm-2 text-right">
+                                            <button class="btn" id="btnEN" type="button" style="background-color:orangered;color:white;font-weight:600">EN</button>
+                                            <button class="btn" id="btnGU" type="button">GU</button>
+                                            <button class="btn" style="background-color:darkslategray;color:white"><i class="icon-home"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="background-color:teal;width:99%">
+                                    <div class="col-sm-12">
+                                        <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">BASIC INFORMATION</label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>APMC Name:</label>
+                                            <div class="col-sm-10">
+                                                <input class='form-control' style="margin-left:5%" placeholder='Write Full APMC Name' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>APMC Address1:</label>
+                                        <div class="col-sm-8">
+                                            <textarea rows='3' class='form-control' style='height:60px !important' tabindex='8'></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>APMC Address2:</label>
+                                        <div class="col-sm-8">
+                                            <textarea rows='3' class='form-control' style='height:60px !important' tabindex='8'></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>State:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>District:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Taluka:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Pincode:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Pincode' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Contact:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Contact' tabindex='10'>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Mobile:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Mobile' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Email:</label>
+                                            <div class="col-sm-10">
+                                                <input class='form-control' style="margin-left:5%" placeholder='Write Email' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10" style="background-color:darkslategrey;width:99%">
+                                    <div class="col-sm-12">
+                                        <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">CHAIRMAN INFORMATION</label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Chairman Name:</label>
+                                            <div class="col-sm-3" style="margin-left:4%">
+                                                <input class='form-control' placeholder='First Name' tabindex='1'>
+                                            </div>
+                                            <div class="col-sm-3 ml-20">
+                                                <input class='form-control' placeholder='Middle Name' tabindex='1'>
+                                            </div>
+                                            <div class="col-sm-3 ml-20">
+                                                <input class='form-control' placeholder='Last Name' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Residance Address1:</label>
+                                        <div class="col-sm-8">
+                                            <textarea rows='3' class='form-control' style='height:60px !important' tabindex='8'></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Residance Address2:</label>
+                                        <div class="col-sm-8">
+                                            <textarea rows='3' class='form-control' style='height:60px !important' tabindex='8'></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>State:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>District:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Taluka:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Pincode:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Pincode' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Contact:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Contact' tabindex='10'>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Mobile:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Mobile' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Email:</label>
+                                            <div class="col-sm-10">
+                                                <input class='form-control' style="margin-left:5%" placeholder='Write Email' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10" style="background-color:royalblue;width:99%">
+                                    <div class="col-sm-12">
+                                        <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">SECRETARY INFORMATION</label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Secretary Name:</label>
+                                            <div class="col-sm-3" style="margin-left:4%">
+                                                <input class='form-control' placeholder='First Name' tabindex='1'>
+                                            </div>
+                                            <div class="col-sm-3 ml-20">
+                                                <input class='form-control' placeholder='Middle Name' tabindex='1'>
+                                            </div>
+                                            <div class="col-sm-3 ml-20">
+                                                <input class='form-control' placeholder='Last Name' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Residance Address1:</label>
+                                        <div class="col-sm-8">
+                                            <textarea rows='3' class='form-control' style='height:60px !important' tabindex='8'></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Residance Address2:</label>
+                                        <div class="col-sm-8">
+                                            <textarea rows='3' class='form-control' style='height:60px !important' tabindex='8'></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>State:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>District:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Taluka:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Pincode:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Pincode' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Contact:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Contact' tabindex='10'>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Mobile:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Mobile' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Email:</label>
+                                            <div class="col-sm-10">
+                                                <input class='form-control' style="margin-left:5%" placeholder='Write Email' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10" style="background-color:maroon;width:99%">
+                                    <div class="col-sm-12">
+                                        <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">
+                                            APMC INFORMATION
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Total Shop:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Total Shop' tabindex='10'>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Registred Vendors:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Registred Vendors' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>APMC Dealing In:</label>
+                                        <div class="col-sm-8">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="">Fruits
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="">Vegetables
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="">Others
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Others:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Others' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10" style="background-color:forestgreen;width:99%">
+                                    <div class="col-sm-12">
+                                        <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">
+                                            BANKING INFORMATION
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Bank Name:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control">
+                                                <option>SELECT</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Branch Name:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Branch Name' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Branch Address:</label>
+                                            <div class="col-sm-10">
+                                                <input class='form-control' style="margin-left:5%" placeholder='Write Full APMC Name' tabindex='1'>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Account Number:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='Account Number' tabindex='10'>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>IFSC Code:</label>
+                                        <div class="col-sm-8">
+                                            <input class='form-control' placeholder='IFSC Code' tabindex='10'>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10" style="background-color:indigo;width:99%">
+                                    <div class="col-sm-12">
+                                        <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">
+                                            DOCUMENT INFORMATION
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>APMC Logo:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" class="form-input-styled" data-fouc="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>APMC Reg. Certificate:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" class="form-input-styled" data-fouc="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Licence Of Approval:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" class="form-input-styled" data-fouc="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>GST Certificate:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" class="form-input-styled" data-fouc="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-10">
+                                    <div class="col-md-12">
+                                        <div class="text-right">
+                                            <div class="toolPanel-icon">
+                                                <button id="btnToolbarSave" type="button" class="btn btn bg-teal" data-popup="tooltip" data-container="body" data-original-title="SAVE">
+                                                    <i class="fa fa-fw fa-save"></i>SAVE
+                                                </button>
+
+                                                <button id="btnToolbarCancel" type="button" class="btn btn-default" data-popup="tooltip" data-container="body" data-original-title="CANCEL">
+                                                    <i class="icon-folder-remove"></i>CANCEL
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /advanced login -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+   
+    <script type="text/javascript">
+        var Vdir = '@System.Web.Configuration.WebConfigurationManager.AppSettings["VirtualDirectoryName"]';
+        $(document).ready(function () {
+           
+        });
+
+        function ITX3ResolveUrl(pUrl) {
+            if (pUrl) {
+                if (pUrl.substr(0, 2) == '~/')
+                    pUrl = pUrl.substr(2, pUrl.length - 2);
+            }
+            var newUrl = '';
+            if (typeof HasPath != 'undefined' && HasPath) {
+                var pathArray = window.location.pathname.split('/');
+                newUrl = location.protocol + '//' + location.host + '/' + pathArray[1] + ((pUrl) ? '/' + pUrl : '/');
+            }
+            else {
+                newUrl = location.protocol + '//' + location.host + '/' + Vdir + ((pUrl) ? pUrl : '/');
+            }
+            return newUrl;
+        }
+
+        function ChangeLanguage(cul) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                async: false,
+                url: ITX3ResolveUrl('Login/ChangeLanguage'),
+                data: "{cul:'" + cul + "'}",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ret, e) {
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+

@@ -1,0 +1,249 @@
+﻿.dashboardModule:hover {
+    background-color: #f2f2f2;
+}
+
+.custom-label {
+    padding-top: 8px !important;
+}
+
+
+.field-validation-valid {
+    display: none;
+}
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+textarea.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.textCenter {
+    display: block !important;
+    text-align: center !important;
+}
+
+
+.textLeft {
+    display: block !important;
+    text-align: Left !important;
+}
+.textRight {
+    display: block !important;
+    text-align: Right !important;
+}
+
+.formBorderBox {
+    border: 1px solid #607D8B;
+    border-radius: 5px;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 0 10px;
+    background-color: #26A69A;
+    border-color: #26A69A;
+    color: #fff;
+    border-radius: 3px;
+}
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .fileUpload span {
+        line-height: 35px;
+        padding-left: 10px
+    }
+
+
+.hideDropdown{
+    display:none!important;
+}
+
+
+
+section.content.acc-master .row {
+    display: flex;
+}
+
+section.content.acc-master .box-footer.bottom-btn {
+    position: absolute;
+    bottom: 0;
+    left: 65px;
+    right: 0;
+}
+
+section.content.acc-master .row > div {
+    margin: 0 5px;
+    box-sizing: border-box;
+    min-height: 800px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+    section.content.acc-master .row > div .form-group select.min-height-fixed option {
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    section.content.acc-master .row > div .form-group select.min-height-fixed {
+        min-height: 550px;
+    }
+
+        section.content.acc-master .row > div .form-group select.min-height-fixed option:before {
+            content: "\f061";
+            font-family: FontAwesome;
+            position: absolute;
+            left: 2px;
+            top: 9px;
+        }
+
+section.content.acc-master .box-footer button {
+    width: 115px !important;
+    margin-bottom: 10px;
+}
+
+section.content.acc-master .box-header h3 {
+    text-align: center;
+    border-bottom: 2px dotted #26a69a;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #333333
+}
+
+
+@media only screen and (max-width: 1260px) {
+    section.content.acc-master .box-footer button {
+        font-size: 11px;
+        width: 60px !important;
+        padding: 7px 2px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    section.content.acc-master .row {
+        display: block;
+    }
+
+        section.content.acc-master .row > div {
+            margin: 0 0 15px 0;
+            min-height: auto;
+        }
+}
+
+
+
+.addNew {
+    margin: 0px;
+    padding: 6px 13px;
+}
+
+
+.form-group {
+    margin-bottom: 5px !important;
+}
+
+.Textboxdisabled {
+    cursor: not-allowed;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 0 10px;
+    /*background-color: #26A69A;
+        border-color: #26A69A;*/
+    color: #fff;
+    border-radius: 3px;
+}
+
+.fileUpload1 {
+    position: relative;
+    overflow: hidden;
+    /*margin: 0 0 0 10px;*/
+    background-color: #26A69A;
+    border-color: #26A69A;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.bckUpload {
+    /*background-image: url('../../GNC/assets/images/profile_icon.png');*/
+    background-image: url('../../IGovernance/assets/images/profile_icon.png');
+    background-size: 150px;
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.fileUpload1 input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.fileUpload span {
+    line-height: 35px;
+    padding-left: 10px
+}
+
+.fileUpload1 span {
+    line-height: 35px;
+    padding-left: 10px
+}
+
+.Textboxdisabled {
+    cursor: not-allowed;
+}
+
+.photoViewDeletebtn{
+    width: 45px;
+    height: 40px;
+}

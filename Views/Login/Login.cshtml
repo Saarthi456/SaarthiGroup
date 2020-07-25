@@ -1,0 +1,241 @@
+﻿@using Westwind.Globalization
+@using System.Threading
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAARTHI</title>
+    <link rel="QC icon" href="~/assets/images/QC.ico" />
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+
+    <link href="~/css/icomoon-style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/assets/js/plugins/loaders/pace.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/plugins/notifications/sweet_alert.min.js"></script>
+    <script src="~/assets/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/OperationJS/Common.js"></script>
+    <script src="~/Scripts/OperationJS/FormOperations.js"></script>
+    <style>
+        .sweet-alert h2 {
+            color: red;
+        }
+    </style>
+    @*<script type="text/javascript" src="~/assets/js/pages/login.js"></script>*@
+    <!-- /theme JS files -->
+</head>
+<body class="login-container bg-slate-800">
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content area -->
+                <div class="content">
+                    <!-- Advanced login -->
+                    <form action="index.html">
+                        <div class="panel panel-body login-form">
+                            <div class="login-form-inner">
+                                <div class="text-left">
+                                    <div class="site-logo">
+                                        <img src="~/Images/ClientsLogo/logo2.png" />
+                                    </div>
+                                </div>
+                                <div class="form-group login-options">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h5 class="content-group-lg">@DbRes.T("Login", "Login_Form")</h5>
+                                        </div>
+                                        <div class="col-sm-4 text-right pt-10">
+                                            <button class="btn" id="btnEN" type="button">EN</button>
+                                            <button class="btn" id="btnGU" type="button">GU</button>
+                                        </div>
+                                        <div class="col-sm-2">
+                                        </div>
+                                    </div>
+                                <div class="row">
+                                    <span class="create-acc ml-10" style="margin-bottom:0px !important">
+                                        @DbRes.T("Dont have an account?", "Login_Form")
+                                        <a href="~/Users/Index" class="content-group">@DbRes.T("Create Your Account", "Login_Form")</a>
+                                    </span>
+                                </div>
+                            </div>
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input id="txtUsername" type="text" class="form-control" placeholder="@DbRes.T("Username", "Login_Form")" tabindex="1" autofocus>
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user text-muted"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input id="txtPassword" type="password" class="form-control" placeholder="@DbRes.T("Password", "Login_Form")" tabindex="2">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2 text-muted"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group login-options">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <a id="btnForgot" tabindex="5">@DbRes.T("Forgot password?", "Login_Form")</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button id="btnLogin" type="button" class="btn bg-teal btn-block btnLogin" tabindex="4">
+                                            @DbRes.T("Login", "Login_Form") <i class="icon-circle-right2 position-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="help-block text-center no-margin">@DbRes.T("By continuing, you're confirming that you've read our", "Login_Form") <a href="#">@DbRes.T("Terms & Conditions", "Login_Form")</a></span>
+                            </div>
+                            <div class="login-form-right">
+                                <h3 class="title"></h3>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /advanced login -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+    <link href="~/assets/css/main_color_style.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var Vdir = '@System.Web.Configuration.WebConfigurationManager.AppSettings["VirtualDirectoryName"]';
+        $(document).ready(function () {
+            $(document).keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                    $('#btnLogin').click();
+                }
+            });
+        });
+
+        function ITX3ResolveUrl(pUrl) {
+            if (pUrl) {
+                if (pUrl.substr(0, 2) == '~/')
+                    pUrl = pUrl.substr(2, pUrl.length - 2);
+            }
+            var newUrl = '';
+            if (typeof HasPath != 'undefined' && HasPath) {
+                var pathArray = window.location.pathname.split('/');
+                newUrl = location.protocol + '//' + location.host + '/' + pathArray[1] + ((pUrl) ? '/' + pUrl : '/');
+            }
+            else {
+                newUrl = location.protocol + '//' + location.host + '/' + Vdir + ((pUrl) ? pUrl : '/');
+            }
+            return newUrl;
+        }
+
+        $('#btnLogin').click(function () {
+            if (Validation()) {
+                var model = {
+                    "Username": $("#txtUsername").val(),
+                    "Password": $("#txtPassword").val(),
+                }
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    async: false,
+                    url: ITX3ResolveUrl('Login/Login'),
+                    data: JSON.stringify(model),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data == "OK") {
+                            var url = ITX3ResolveUrl('~/Dashboard/Index');
+                            location.href = url;
+                        }
+                        else {
+                            $("#txtUsername").val('');
+                            $("#txtPassword").val('');
+                            AlertDialog('Credentials Not Matched');
+                        }
+                    },
+                    error: function (xhr, ret, e) {
+                        $("#txtUsername").val('');
+                        $("#txtPassword").val('')
+                    }
+                });
+            }
+        });
+
+
+        $('#btnForgot').click(function () {
+            var url = ITX3ResolveUrl('Login/Activation');
+            location.href = url;
+        });
+
+         $('#btnEN').click(function () {
+             ChangeLanguage('en-US');
+         });
+
+         $('#btnGU').click(function () {
+           ChangeLanguage('gu-IN');
+         });
+
+        function Validation() {
+            if (CheckMandatoryField("txtUsername", "textbox") == false) {
+                $("#txtUsername").focus();
+                return false;
+            }
+
+            if (CheckMandatoryField("txtPassword", "textbox") == false) {
+                $("#txtPassword").focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function ChangeLanguage(cul) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                async: false,
+                url: ITX3ResolveUrl('Login/ChangeLanguage'),
+                data: "{cul:'" + cul + "'}",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ret, e) {
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
