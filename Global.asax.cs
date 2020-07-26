@@ -24,7 +24,7 @@ namespace saarthi
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var config = DbResourceConfiguration.Current;
-            config.ConnectionString = "ERPConnection";
+            config.ConnectionString = "SaarthiConnection";
             config.DbResourceDataManagerType = typeof(DbResourceSqlServerDataManager);
             GeneratedResourceSettings.ResourceAccessMode = ResourceAccessMode.DbResourceManager;
         }

@@ -1,1 +1,442 @@
-﻿
+﻿@model saarthi.Models.Vendor
+@using Westwind.Globalization
+@using System.Threading
+
+@using (Html.BeginForm("Vendor_Registration", "Users", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "Vendorform", @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.strAction)
+    @Html.HiddenFor(model => model.AutoId)
+
+    @Html.HiddenFor(model => model.StateId, new { @id = "VendorStateId" })
+    @Html.HiddenFor(model => model.DistrictId, new { @id = "VendorDistrictId" })
+    @Html.HiddenFor(model => model.TalukaId, new { @id = "VendorTalukaId" })
+
+    @Html.HiddenFor(model => model.ResidanceStateId)
+    @Html.HiddenFor(model => model.ResidanceDistrictId)
+    @Html.HiddenFor(model => model.ResidanceTalukaId)
+
+    @Html.HiddenFor(model => model.BankId, new { @id = "VendorBankId" })
+    @Html.HiddenFor(model => model.APMCId, new { @id = "VendorAPMCId" })
+
+    <div class="row" style="background-color:darkslategrey;width:99%">
+        <div class="col-sm-12">
+            <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">@DbRes.T("BASIC INFORMATION", "Vendor_Form")</label>
+        </div>
+    </div>
+    <div class="row mt-10">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Name", "Vendor_Form"):</label>
+                <div class="col-sm-10">
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = @DbRes.T("First Name", "Vendor_Form"), @tabindex = '1', @style = "margin-left:15%" })
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", @placeholder = @DbRes.T("Middle Name", "Vendor_Form"), @tabindex = '2', @style = "margin-left:17%" })
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = @DbRes.T("Last Name", "Vendor_Form"), @tabindex = '2', @style = "margin-left:19%;width:97%;" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Shop Address 1", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.Address1, new { @class = "form-control", @style = "height:60px !important", @rows = '3', @placeholder = @DbRes.T("Shop Address 1", "Vendor_Form"), @tabindex = '4' })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Shop Address 2", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.Address2, new { @class = "form-control", @style = "height:60px !important", @rows = '3', @placeholder = @DbRes.T("Shop Address 2", "Vendor_Form"), @tabindex = '5' })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("State", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorState" class="form-control select2" tabindex="4">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("District", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorDistrict" class="form-control select2" tabindex="5">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Taluka", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorTaluka" class="form-control select2" tabindex="6">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Pin Code", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.PinCode, new { @class = "form-control", @placeholder = @DbRes.T("Pin Code", "Vendor_Form"), @tabindex = '7' })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Contact No.", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", @placeholder = @DbRes.T("Contact No.", "Vendor_Form"), @tabindex = '8' })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Mobile No.", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control numericOnly", @placeholder = @DbRes.T("Mobile No.", "Vendor_Form"), @tabindex = '9' })
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Residance Address 1", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.ResidanceAddress1, new { @class = "form-control", cols = "5", rows = "3", @placeholder = @DbRes.T("Residance Address 1", "Vendor_Form"), @tabindex = "14" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Residance Address 2", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.ResidanceAddress2, new { @class = "form-control", cols = "5", rows = "3", @placeholder = @DbRes.T("Residance Address 2", "Vendor_Form"), @tabindex = "15" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("State", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorState_Chair" class="form-control select2" tabindex="16">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("District", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorDistrict_Chair" class="form-control select2" tabindex="17">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Taluka", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorTaluka_Chair" class="form-control select2" tabindex="18">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Pin Code", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ResidancePinCode, new { @class = "form-control", @placeholder = @DbRes.T("Pin Code", "Vendor_Form"), @tabindex = "19" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Contact No.", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ResidanceContactNo, new { @class = "form-control", @placeholder = @DbRes.T("Contact No.", "Vendor_Form"), @tabindex = "20" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Mobile No.", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ResidanceMobileNo, new { @class = "form-control", @placeholder = @DbRes.T("Mobile No.", "Vendor_Form"), @tabindex = "21" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-6 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Are You Associated With Any APMC", "Vendor_Form"):</label>
+            <label class="checkbox-inline" style="width: 100px;">@Html.RadioButtonFor(model => model.IsAPMCAssosiated, true)@DbRes.T("Yes", "Vendor_Form")</label>
+            <label class="checkbox-inline" style="width: 100px;">@Html.RadioButtonFor(model => model.IsAPMCAssosiated, false)@DbRes.T("No", "Vendor_Form")</label>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("APMC Name", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlAPMC" class="form-control select2" tabindex="18">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10" style="background-color:darkslategrey;width:99%">
+        <div class="col-sm-12">
+            <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">
+                @DbRes.T("DELIVERY / WARE HOUSE INFORMATION", "Vendor_Form")
+            </label>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Ref Type", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlRefType" class="form-control select2" tabindex="18">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Ref Name", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlRefName" class="form-control select2" tabindex="18">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>Dealing In:</label>
+            <div class="col-sm-8">
+                <label class="checkbox-inline">
+                    @Html.CheckBoxFor(model => model.DealInFruit, new { @tabindex = "37" })
+                    @DbRes.T("Fruits", "Vendor_Form")
+                </label>
+                <label class="checkbox-inline">
+                    @Html.CheckBoxFor(model => model.DealInVeg, new { @tabindex = "38" })
+                    @DbRes.T("Vegetables", "Vendor_Form")
+                </label>
+                <label class="checkbox-inline">
+                    @Html.CheckBoxFor(model => model.DealInOther, new { @tabindex = "39" })
+                    @DbRes.T("Others", "Vendor_Form")
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Others", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.DealOther, new { @class = "form-control", @placeholder = @DbRes.T("Others", "Vendor_Form"), @tabindex = "40" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10" style="background-color:darkslategrey;width:99%">
+        <div class="col-sm-12">
+            <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">
+                @DbRes.T("BANKING INFORMATION", "Vendor_Form")
+            </label>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Bank Name", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                <select id="ddlVendorBank" class="form-control select2" tabindex="41">
+                    <option>@DbRes.T("SELECT", "Common")</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Branch Name", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.BranchName, new { @class = "form-control", @placeholder = @DbRes.T("Branch Name", "Vendor_Form"), @tabindex = "42" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'> @DbRes.T("Branch Address", "Vendor_Form"):</label>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(model => model.BranchAddress, new { @class = "form-control", @style = "margin-left:5%;Height:60px !important", @rows = "3", @placeholder = @DbRes.T("Branch Address", "Vendor_Form"), @tabindex = "43" })
+                </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Account Number", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control", @placeholder = @DbRes.T("Account Number", "Vendor_Form"), @tabindex = "44" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("IFSC Code", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.IFSCCode, new { @class = "form-control", @placeholder = @DbRes.T("IFSC Code", "Vendor_Form"), @tabindex = "45" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10" style="background-color:darkslategrey;width:99%">
+        <div class="col-sm-12">
+            <label class='ml-10 pt-5' style="font-size:14px;color:white;font-weight:bold">
+                @DbRes.T("DOCUMENT INFORMATION", "Vendor_Form")
+            </label>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload Aadhar Card", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.IMAGE_AADHAR, "", new { @class = "form-control", @type = "file" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload PAN Card", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.IMAGE_PAN, "", new { @class = "form-control", @type = "file" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload GST Certificate", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.IMAGE_GST, "", new { @class = "form-control", @type = "file" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-10">
+        <div class="col-md-12">
+            <div class="text-right">
+                <div class="toolPanel-icon">
+                    <button id="btnVendorSave" type="button" class="btn btn bg-teal" data-popup="tooltip" data-container="body" data-original-title="SAVE">
+                        <i class="icon-add"></i>@DbRes.T("SAVE", "Common")
+                    </button>
+
+                    <button id="btnVendorCancel" type="button" class="btn btn-default" data-popup="tooltip" data-container="body" data-original-title="CANCEL">
+                        <i class="icon-folder-remove"></i>@DbRes.T("CANCEL", "Common")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        VendorInit();
+        Vendor_DrilDownEvents();
+        $("#ContactNo,#MobileNo,#ChairmanContactNo,#ChairmanMobileNo,#SecretaryContactNo,#SecretaryMobileNo,#TotalShop,#RegisterVendor").ForceNumericOnly();
+    });
+
+    function VendorInit() {
+        $(".select2").select2();
+        FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorState", false, "", "tblState", "AutoID", "StateName", "", "StateName");
+        FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorState_Chair", false, "", "tblState", "AutoID", "StateName", "", "StateName");
+        FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorBank", false, "", "tblBank", "AutoID", "BankName", "", "BankName");
+        FillDropdownListFromSPJson("DropDownSP", "", "ddlAPMC", false, "", "APMC", "AutoID", "Name", "", "Name");
+    }
+
+    function Vendor_DrilDownEvents() {
+        $('#ddlVendorState').on("change", function (e) {
+            var val = $(this).val();
+            if (val == '' || val == undefined || val == null || val == "") {
+                $("#ddlVendorDistrict").empty();
+                $("#ddlVendorDistrict").empty().append('<option  value="">Select</option>');
+            }
+            else {
+                FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorDistrict", false, "", "tblDistrict", "AutoID", "DistrictName", "StateId=" + val + "", "DistrictName");
+            }
+        });
+
+        $('#ddlVendorDistrict').on("change", function (e) {
+            var val = $(this).val();
+            if (val == '' || val == undefined || val == null || val == "") {
+                $("#ddlVendorTaluka").empty();
+                $("#ddlVendorTaluka").empty().append('<option  value="">Select</option>');
+            }
+            else {
+                FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorTaluka", false, "", "tblTaluka", "AutoID", "TalukaName", "DistrictId=" + val + "", "TalukaName");
+            }
+        });
+
+        $('#ddlVendorState_Chair').on("change", function (e) {
+            var val = $(this).val();
+            if (val == '' || val == undefined || val == null || val == "") {
+                $("#ddlVendorDistrict_Chair").empty();
+                $("#ddlVendorDistrict_Chair").empty().append('<option  value="">Select</option>');
+            }
+            else {
+                FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorDistrict_Chair", false, "", "tblDistrict", "AutoID", "DistrictName", "StateId=" + val + "", "DistrictName");
+            }
+        });
+
+        $('#ddlVendorDistrict_Chair').on("change", function (e) {
+            var val = $(this).val();
+            if (val == '' || val == undefined || val == null || val == "") {
+                $("#ddlVendorTaluka_Chair").empty();
+                $("#ddlVendorTaluka_Chair").empty().append('<option  value="">Select</option>');
+            }
+            else {
+                FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorTaluka_Chair", false, "", "tblTaluka", "AutoID", "TalukaName", "DistrictId=" + val + "", "TalukaName");
+            }
+        });
+    }
+
+    $('#btnVendorSave').click(function (e) {
+        e.preventDefault();
+        if (VendorValidations()) {
+            $("#VendorStateId").val($("#ddlVendorState").val());
+            $("#VendorDistrictId").val($("#ddlVendorDistrict").val());
+            $("#VendorTalukaId").val($("#ddlVendorTaluka").val());
+
+            $("#ResidanceStateId").val($("#ddlVendorState_Chair").val());
+            $("#ResidanceDistrictId").val($("#ddlVendorDistrict_Chair").val());
+            $("#ResidanceTalukaId").val($("#ddlVendorTaluka_Chair").val());
+
+            $("#VendorBankId").val($("#ddlVendorBank").val());
+            $("#VendorAPMCId").val($("#ddlAPMC").val());
+
+            $('form').submit();
+        }
+    });
+
+    function VendorValidations() {
+        if (CheckMandatoryField("FirstName", "textbox") == false) {
+            return false;
+        }
+        if (CheckMandatoryField("LastName", "textbox") == false) {
+            return false;
+        }
+        return true;
+    }
+</script>
