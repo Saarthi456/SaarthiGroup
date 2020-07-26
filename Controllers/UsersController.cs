@@ -119,9 +119,36 @@ namespace saarthi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Farmer_Registration(Farmer objFarmer)
+        public ActionResult Farmer_Registration(Farmer objFarmer, HttpPostedFileBase IMAGE_AADHAR, HttpPostedFileBase IMAGE_PAN, HttpPostedFileBase IMAGE_GST)
         {
             bool Result = false;
+            Guid objAadhar = Guid.NewGuid();
+            Guid objPan = Guid.NewGuid();
+            Guid objGST = Guid.NewGuid();
+
+            if (IMAGE_AADHAR != null)
+            {
+                objFarmer.IMAGEAADHAR = Common.ConvertDBnullToString(objAadhar);
+                objFarmer.IMAGEAADHAR = objFarmer.IMAGEAADHAR + Path.GetExtension(IMAGE_AADHAR.FileName);
+                string path = Path.Combine(Server.MapPath("~/Upload/APMC/"), objFarmer.IMAGEAADHAR);
+                IMAGE_AADHAR.SaveAs(path);
+            }
+
+            if (IMAGE_PAN != null)
+            {
+                objFarmer.IMAGEPAN = Common.ConvertDBnullToString(objPan);
+                objFarmer.IMAGEPAN = objFarmer.IMAGEPAN + Path.GetExtension(IMAGE_PAN.FileName);
+                string path = Path.Combine(Server.MapPath("~/Upload/APMC/"), objFarmer.IMAGEPAN);
+                IMAGE_PAN.SaveAs(path);
+            }
+
+            if (IMAGE_GST != null)
+            {
+                objFarmer.IMAGEGST = Common.ConvertDBnullToString(objGST);
+                objFarmer.IMAGEGST = objFarmer.IMAGEGST + Path.GetExtension(IMAGE_GST.FileName);
+                string path = Path.Combine(Server.MapPath("~/Upload/APMC/"), objFarmer.IMAGEGST);
+                IMAGE_GST.SaveAs(path);
+            }
             clsFarmer objclsFarmer = new clsFarmer();
             if (objclsFarmer.FarmerCRUD(objFarmer, Enums.Action.CREATE))
             {
