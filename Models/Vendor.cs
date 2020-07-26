@@ -42,6 +42,9 @@ namespace saarthi.Models
         public string IMAGEAADHAR { get; set; }
         public string IMAGEPAN { get; set; }
         public string IMAGEGST { get; set; }
+        public string IMAGE_AADHAR { get; set; }
+        public string IMAGE_PAN { get; set; }
+        public string IMAGE_GST { get; set; }
         public int StatusId { get; set; }
     }
 }

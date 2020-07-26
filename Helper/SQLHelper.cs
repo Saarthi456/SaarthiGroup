@@ -23,7 +23,7 @@ namespace saarthi.Helpers
 
         public SQLHelper()
         {
-            ConnectionString = ConfigurationManager.ConnectionStrings["ERPConnection"].ConnectionString.ToString();
+            ConnectionString = ConfigurationManager.ConnectionStrings["SaarthiConnection"].ConnectionString.ToString();
         }
 
         public SQLHelper(string ConnectionStringLocal)
