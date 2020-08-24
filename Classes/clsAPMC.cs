@@ -164,9 +164,9 @@ namespace saarthi.Classes
         #endregion
 
         #region CREATE/UPDATE
-        public bool APMCCRUD(APMC objAPMC, Enums.Action type)
+        public int APMCCRUD(APMC objAPMC, Enums.Action type)
         {
-            bool Return = false;
+            int Return = 0;
             ds = new DataSet();
             cmd = new SqlCommand();
             ObjSQLHelper = new SQLHelper();
@@ -239,12 +239,15 @@ namespace saarthi.Classes
                 cmd.Parameters.AddWithValue("@IMAGEGST", objAPMC.IMAGEGST);
                 cmd.Parameters.AddWithValue("@StatusId", objAPMC.StatusId);
                 cmd.Parameters.AddWithValue("@UserId", objAPMC.UserId);
+                cmd.Parameters.AddWithValue("@OutputId", SqlDbType.BigInt);
+                cmd.Parameters["@OutputId"].Size = 8;
+                cmd.Parameters["@OutputId"].Direction = ParameterDirection.Output;
 
                 string ProcName = "APMC_SP";
-                if (ObjSQLHelper.IUDProcData(ProcName, cmd))
+                Return = Common.ConvertDBNullToInt(ObjSQLHelper.IUDProcDataWithOutputParameter(ProcName, cmd));
+                if (Return > 0)
                 {
                     ObjSQLHelper.CommitTransaction();
-                    Return = true;
                 }
                 else
                     ObjSQLHelper.RollBackTransaction();

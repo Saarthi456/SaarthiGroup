@@ -2,11 +2,8 @@
 @using Westwind.Globalization
 @using System.Threading
 
-@using (Html.BeginForm("Vendor_Registration", "Users", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "Vendorform", @class = "form-horizontal" }))
+@using (Html.BeginForm("Vendor_Registration", "Users", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id = "Vendorform", @class = "form-horizontal" }))
 {
-    @Html.HiddenFor(model => model.strAction)
-    @Html.HiddenFor(model => model.AutoId)
-
     @Html.HiddenFor(model => model.StateId, new { @id = "VendorStateId" })
     @Html.HiddenFor(model => model.DistrictId, new { @id = "VendorDistrictId" })
     @Html.HiddenFor(model => model.TalukaId, new { @id = "VendorTalukaId" })
@@ -17,6 +14,9 @@
 
     @Html.HiddenFor(model => model.BankId, new { @id = "VendorBankId" })
     @Html.HiddenFor(model => model.APMCId, new { @id = "VendorAPMCId" })
+
+    @Html.HiddenFor(model => model.RefTypeId)
+    @Html.HiddenFor(model => model.RefNameId)
 
     <div class="row" style="background-color:darkslategrey;width:99%">
         <div class="col-sm-12">
@@ -312,20 +312,27 @@
 
     <div class="row mt-10">
         <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Your Picture", "Vendor_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.IMAGE_LOGO, "", new { @class = "form-control", @type = "file" })
+            </div>
+        </div>
+        <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload Aadhar Card", "Vendor_Form"):</label>
             <div class="col-sm-8">
                 @Html.TextBoxFor(model => model.IMAGE_AADHAR, "", new { @class = "form-control", @type = "file" })
+
             </div>
         </div>
+    </div>
+
+    <div class="row mt-10">
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload PAN Card", "Vendor_Form"):</label>
             <div class="col-sm-8">
                 @Html.TextBoxFor(model => model.IMAGE_PAN, "", new { @class = "form-control", @type = "file" })
             </div>
         </div>
-    </div>
-
-    <div class="row mt-10">
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload GST Certificate", "Vendor_Form"):</label>
             <div class="col-sm-8">
@@ -364,6 +371,8 @@
         FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorState_Chair", false, "", "tblState", "AutoID", "StateName", "", "StateName");
         FillDropdownListFromSPJson("DropDownSP", "", "ddlVendorBank", false, "", "tblBank", "AutoID", "BankName", "", "BankName");
         FillDropdownListFromSPJson("DropDownSP", "", "ddlAPMC", false, "", "APMC", "AutoID", "Name", "", "Name");
+        FillDropdownListFromSPJson("DropDownSP", "", "ddlRefType", false, "", "TableOfTables", "AutoId", "ItemName", "IsActive=1", "DisplayOrder");
+        FillDropdownListFromSPJson("DropDownSP", "@@Action=RefList", "ddlRefName", false, "", "", "", "", "", "");
     }
 
     function Vendor_DrilDownEvents() {
@@ -426,7 +435,10 @@
             $("#VendorBankId").val($("#ddlVendorBank").val());
             $("#VendorAPMCId").val($("#ddlAPMC").val());
 
-            $('form').submit();
+            $("#RefTypeId").val($("#ddlRefType").val());
+            $("#RefNameId").val($("#ddlRefName").val());
+
+            Vendorform.submit();
         }
     });
 

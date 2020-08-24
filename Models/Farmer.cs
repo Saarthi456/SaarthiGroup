@@ -28,23 +28,29 @@ namespace saarthi.Models
         public string FarmEmail { get; set; }
         public bool IsAPMCAssosiated { get; set; }
         public long APMCId { get; set; }
-        public int RefTypeId { get; set; }
-        public int RefNameId { get; set; }
-        public bool DealInFruit { get; set; }
-        public bool DealInVeg { get; set; }
-        public bool DealInOther { get; set; }
-        public string DealOther { get; set; }
+        public int FarmerRefTypeId { get; set; }
+        public int FarmerRefNameId { get; set; }
+        public bool FarmerDealInFruit { get; set; }
+        public bool FarmerDealInVeg { get; set; }
+        public bool FarmerDealInOther { get; set; }
+        public string FarmerDealOther { get; set; }
         public int BankId { get; set; }
         public string BranchName { get; set; }
         public string BranchAddress { get; set; }
         public string AccountNumber { get; set; }
         public string IFSCCode { get; set; }
+
+        public string IMAGELOGO { get; set; }
         public string IMAGEAADHAR { get; set; }
         public string IMAGEPAN { get; set; }
         public string IMAGEGST { get; set; }
+
+        public string FARMER_IMAGE_LOGO { get; set; }
+        public string FARMER_IMAGE_AADHAR { get; set; }
+        public string FARMER_IMAGE_PAN { get; set; }
+        public string FARMER_IMAGE_GST { get; set; }
+
         public int StatusId { get; set; }
-        public string IMAGE_AADHAR { get; set; }
-        public string IMAGE_PAN { get; set; }
-        public string IMAGE_GST { get; set; }
+      
     }
 }

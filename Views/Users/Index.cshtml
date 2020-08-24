@@ -1,4 +1,5 @@
-﻿@using Westwind.Globalization
+﻿@using saarthi.Models
+@using Westwind.Globalization
 @using System.Threading
 @{
     Layout = null;
@@ -109,7 +110,30 @@
         .radio-inline, .checkbox-inline {
             position: relative;
             padding-left: 20px !important;
-        }       
+        }
+
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+
     </style>
 
 </head>
@@ -128,7 +152,7 @@
                                 <div class="form-group login-options">
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <h5 class="content-group-lg">@DbRes.T("Registration For", "Registration_Form")</h5>
+                                            <h5 class="content-group-lg">@DbRes.T("Registration For", "Registration_Form") <label id="lblRegister" class="text-bold" style="color:orangered"></label></h5>
                                         </div>
                                         <div class="col-sm-5 text-left">
                                             <button id="btnAPMC" class="btn"><i class="icon-city"></i> @DbRes.T("APMC", "Registration_Form")</button>
@@ -144,13 +168,13 @@
                                 </div>
 
                                 <div id="div_APMC" style="display:none">
-                                    @Html.Partial("_APMC")
+                                    @Html.Partial("_APMC",new APMC())
                                 </div>
                                 <div id="div_Vendor" style="display:none">
-                                    @Html.Partial("_Vendor")
+                                    @Html.Partial("_Vendor", new Vendor())
                                 </div>
                                 <div id="div_Farmer" style="display:none">
-                                    @Html.Partial("_Farmer")
+                                    @Html.Partial("_Farmer", new Farmer())
                                 </div>
                             </div>
                         </div>
@@ -186,7 +210,7 @@
                 $("#btnVendor").removeAttr("style");
                 $("#btnFarmer").removeAttr("style");
                 $("#btnAPMC").css({ "background-color": "orangered", "color": "white", "font-weight": "600" });
-
+                $("#lblRegister").text("APMC");
                 $("#div_APMC").show();
                 $("#div_Vendor").hide();
                 $("#div_Farmer").hide();
@@ -195,7 +219,7 @@
                 $("#btnAPMC").removeAttr("style");
                 $("#btnFarmer").removeAttr("style");
                 $("#btnVendor").css({ "background-color": "orangered", "color": "white", "font-weight": "600" });
-
+                $("#lblRegister").text("Vendor");
                 $("#div_Vendor").show();
                 $("#div_APMC").hide();
                 $("#div_Farmer").hide();
@@ -204,7 +228,7 @@
                 $("#btnAPMC").removeAttr("style");
                 $("#btnVendor").removeAttr("style");
                 $("#btnFarmer").css({ "background-color": "orangered", "color": "white", "font-weight": "600" });
-
+                $("#lblRegister").text("Farmer");
                 $("#div_Farmer").show();
                 $("#div_Vendor").hide();
                 $("#div_APMC").hide();
@@ -253,24 +277,49 @@
             });
         }
 
+        function HideShowTabs() {
+            if (ShownTab == 'APMC') {
+                $("#lblRegister").text("APMC");
+                $("#div_APMC").show();
+                $("#div_Vendor").hide();
+                $("#div_Farmer").hide();
+                
+            }
+            else if (ShownTab == 'Vendor') {
+                $("#lblRegister").text("Vendor");
+                $("#div_APMC").hide();
+                $("#div_Vendor").show();
+                $("#div_Farmer").hide();
+            }
+            else {
+                $("#lblRegister").text("Farmer");
+                $("#div_APMC").hide();
+                $("#div_Vendor").hide();
+                $("#div_Farmer").show();
+            }
+        }
+
         $('#btnAPMC').click(function () {
              if (ShownTab != 'APMC') {
-                var url = ITX3ResolveUrl('~/Users/Index?ShownTab=APMC');
-                location.href = url;
-             }
+                 ShownTab = 'APMC';
+                 HideShowTabs();
+                 HighlightActiveButtons();
+            }
          });
 
         $('#btnVendor').click(function () {
              if (ShownTab != 'Vendor') {
-                var url = ITX3ResolveUrl('~/Users/Index?ShownTab=Vendor');
-                location.href = url;
+                 ShownTab = 'Vendor';
+                 HideShowTabs();
+                 HighlightActiveButtons();
              }
          });
 
         $('#btnFarmer').click(function () {
             if (ShownTab != 'Farmer') {
-                var url = ITX3ResolveUrl('~/Users/Index?ShownTab=Farmer');
-                location.href = url;
+                ShownTab = 'Farmer';
+                HideShowTabs();
+                HighlightActiveButtons();
             }
         });
 

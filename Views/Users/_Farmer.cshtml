@@ -1,13 +1,9 @@
-﻿
-@model saarthi.Models.Farmer
+﻿@model saarthi.Models.Farmer
 @using Westwind.Globalization
 @using System.Threading
 
-@using (Html.BeginForm("Farmer_Registration", "Users", null, FormMethod.Post, new { enctype = "multipart/form-data", id = "Farmerform", @class = "form-horizontal" }))
+@using (Html.BeginForm("Farmer_Registration", "Users", null, FormMethod.Post, new { @enctype = "multipart/form-data", @id = "Farmerform", @class = "form-horizontal" }))
 {
-    @Html.HiddenFor(model => model.strAction)
-    @Html.HiddenFor(model => model.AutoId)
-
     @Html.HiddenFor(model => model.StateId, new { @id = "FarmerStateId" })
     @Html.HiddenFor(model => model.DistrictId, new { @id = "FarmerDistrictId" })
     @Html.HiddenFor(model => model.TalukaId, new { @id = "FarmerTalukaId" })
@@ -18,6 +14,10 @@
 
     @Html.HiddenFor(model => model.BankId, new { @id = "FarmerBankId" })
     @Html.HiddenFor(model => model.APMCId, new { @id = "FarmerAPMCId" })
+
+    @Html.HiddenFor(model => model.FarmerRefTypeId)
+    @Html.HiddenFor(model => model.FarmerRefNameId)
+
 
     <div class="row" style="background-color:darkslategrey;width:99%">
         <div class="col-sm-12">
@@ -30,13 +30,13 @@
                 <label class='col-md-1 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Name", "Farmer_Form"):</label>
                 <div class="col-sm-10">
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @id="FarmerFirstName", @placeholder = @DbRes.T("First Name", "Farmer_Form"), @tabindex = '1', @style = "margin-left:15%" })
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @id = "FarmerFirstName", @placeholder = @DbRes.T("First Name", "Farmer_Form"), @tabindex = '1', @style = "margin-left:15%" })
                     </div>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control",@id="FarmerMiddleName", @placeholder = @DbRes.T("Middle Name", "Farmer_Form"), @tabindex = '2', @style = "margin-left:17%" })
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", @id = "FarmerMiddleName", @placeholder = @DbRes.T("Middle Name", "Farmer_Form"), @tabindex = '2', @style = "margin-left:17%" })
                     </div>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @id="FarmerLastName",@placeholder = @DbRes.T("Last Name", "Farmer_Form"), @tabindex = '2', @style = "margin-left:19%;width:97%;" })
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @id = "FarmerLastName", @placeholder = @DbRes.T("Last Name", "Farmer_Form"), @tabindex = '2', @style = "margin-left:19%;width:97%;" })
                     </div>
                 </div>
             </div>
@@ -122,13 +122,13 @@
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Farm Address 1", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextAreaFor(model => model.FarmAddress1, new { @class = "form-control", cols = "5", rows = "3", @placeholder = @DbRes.T("Farm Address 1", "Farmer_Form"), @tabindex = "14" })
+                @Html.TextAreaFor(model => model.FarmAddress1, new { @class = "form-control", @style = "height:60px !important", @rows = '3', @placeholder = @DbRes.T("Farm Address 1", "Farmer_Form"), @tabindex = "14" })
             </div>
         </div>
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Farm Address 2", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextAreaFor(model => model.FarmAddress2, new { @class = "form-control", cols = "5", rows = "3", @placeholder = @DbRes.T("Farm Address 2", "Farmer_Form"), @tabindex = "15" })
+                @Html.TextAreaFor(model => model.FarmAddress2, new { @class = "form-control", @style = "height:60px !important", @rows = '3', @placeholder = @DbRes.T("Farm Address 2", "Farmer_Form"), @tabindex = "15" })
             </div>
         </div>
     </div>
@@ -208,15 +208,15 @@
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Farming", "Farmer_Form"):</label>
             <div class="col-sm-8">
                 <label class="checkbox-inline">
-                    @Html.CheckBoxFor(model => model.DealInFruit, new { @tabindex = "37" })
+                    @Html.CheckBoxFor(model => model.FarmerDealInFruit, new { @tabindex = "37" })
                     @DbRes.T("Fruits", "Farmer_Form")
                 </label>
                 <label class="checkbox-inline">
-                    @Html.CheckBoxFor(model => model.DealInVeg, new { @tabindex = "38" })
+                    @Html.CheckBoxFor(model => model.FarmerDealInVeg, new { @tabindex = "38" })
                     @DbRes.T("Vegetables", "Farmer_Form")
                 </label>
                 <label class="checkbox-inline">
-                    @Html.CheckBoxFor(model => model.DealInOther, new { @tabindex = "39" })
+                    @Html.CheckBoxFor(model => model.FarmerDealInOther, new { @tabindex = "39" })
                     @DbRes.T("Others", "Farmer_Form")
                 </label>
             </div>
@@ -224,7 +224,7 @@
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Others", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextBoxFor(model => model.DealOther, new { @class = "form-control", @placeholder = @DbRes.T("Others", "Farmer_Form"), @tabindex = "40" })
+                @Html.TextBoxFor(model => model.FarmerDealOther, new { @class = "form-control", @placeholder = @DbRes.T("Others", "Farmer_Form"), @tabindex = "40" })
             </div>
         </div>
     </div>
@@ -233,7 +233,7 @@
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Ref Type", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                <select id="ddlRefType" class="form-control select2" tabindex="18">
+                <select id="ddlFarmerRefType" class="form-control select2" tabindex="18">
                     <option>@DbRes.T("SELECT", "Common")</option>
                 </select>
             </div>
@@ -241,7 +241,7 @@
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Ref Name", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                <select id="ddlRefName" class="form-control select2" tabindex="18">
+                <select id="ddlFarmerRefName" class="form-control select2" tabindex="18">
                     <option>@DbRes.T("SELECT", "Common")</option>
                 </select>
             </div>
@@ -315,24 +315,32 @@
 
     <div class="row mt-10">
         <div class="col-sm-6">
-            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload Aadhar Card", "Farmer_Form"):</label>
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Your Picture", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextBoxFor(model => model.IMAGE_AADHAR, "", new { @class = "form-control", @type = "file" })
+                @Html.TextBoxFor(model => model.FARMER_IMAGE_LOGO, "", new { @class = "form-control", @type = "file" })
             </div>
         </div>
         <div class="col-sm-6">
-            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload PAN Card", "Farmer_Form"):</label>
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload Aadhar Card", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextBoxFor(model => model.IMAGE_PAN, "", new { @class = "form-control", @type = "file" })
+                @Html.TextBoxFor(model => model.FARMER_IMAGE_AADHAR, "", new { @class = "form-control", @type = "file" })
             </div>
         </div>
     </div>
 
     <div class="row mt-10">
         <div class="col-sm-6">
+            <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload PAN Card", "Farmer_Form"):</label>
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.FARMER_IMAGE_PAN, "", new { @class = "form-control", @type = "file" })
+            </div>
+           
+        </div>
+
+        <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Upload GST Certificate", "Farmer_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextBoxFor(model => model.IMAGE_GST, "", new { @class = "form-control", @type = "file" })
+                @Html.TextBoxFor(model => model.FARMER_IMAGE_GST, "", new { @class = "form-control", @type = "file" })
             </div>
         </div>
     </div>
@@ -367,6 +375,8 @@
         FillDropdownListFromSPJson("DropDownSP", "", "ddlFarmerState_Chair", false, "", "tblState", "AutoID", "StateName", "", "StateName");
         FillDropdownListFromSPJson("DropDownSP", "", "ddlFarmerBank", false, "", "tblBank", "AutoID", "BankName", "", "BankName");
         FillDropdownListFromSPJson("DropDownSP", "", "ddlFarmerAPMC", false, "", "APMC", "AutoID", "Name", "", "Name");
+        FillDropdownListFromSPJson("DropDownSP", "", "ddlFarmerRefType", false, "", "TableOfTables", "AutoId", "ItemName", "IsActive=1", "DisplayOrder");
+        FillDropdownListFromSPJson("DropDownSP", "@@Action=RefList", "ddlFarmerRefName", false, "", "", "", "", "", "");
     }
 
     function Farmer_DrilDownEvents() {
@@ -429,12 +439,14 @@
             $("#FarmerBankId").val($("#ddlFarmerBank").val());
             $("#FarmerAPMCId").val($("#ddlFarmerAPMC").val());
 
-            $('form').submit();
+            $("#FarmerRefTypeId").val($("#ddlFarmerRefType").val());
+            $("#FarmerRefNameId").val($("#ddlFarmerRefName").val());
+
+            Farmerform.submit();
         }
     });
 
     function FarmerValidations() {
-        debugger;
         if (CheckMandatoryField("FarmerFirstName", "textbox") == false) {
             return false;
         }

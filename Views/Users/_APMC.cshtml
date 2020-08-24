@@ -2,7 +2,7 @@
 @using Westwind.Globalization
 @using System.Threading
 
-@using (Html.BeginForm("APMC_Registration", "Users", null, FormMethod.Post, new {  enctype = "multipart/form-data",id = "APMCform", @class = "form-horizontal" }))
+@using (Html.BeginForm("APMC_Registration", "Users", null, FormMethod.Post, new { @id = "APMCform", @enctype = "multipart/form-data", @class = "form-horizontal" }))
 {
     @Html.HiddenFor(model => model.strAction)
     @Html.HiddenFor(model => model.AutoId)
@@ -149,13 +149,13 @@
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Residance Address 1", "APMC_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextAreaFor(model => model.ChairmanAddress1, new { @class = "form-control", cols = "5", rows = "3", @placeholder = @DbRes.T("Residance Address 1", "APMC_Form"), @tabindex = "14" })
+                @Html.TextAreaFor(model => model.ChairmanAddress1, new { @class = "form-control", @style = "height:60px !important", @placeholder = @DbRes.T("Residance Address 1", "APMC_Form"), @tabindex = "14" })
             </div>
         </div>
         <div class="col-sm-6">
             <label class='col-md-3 custom-label control-label text-semibold text-size-large pt-5 ml-10'>@DbRes.T("Residance Address 2", "APMC_Form"):</label>
             <div class="col-sm-8">
-                @Html.TextAreaFor(model => model.ChairmanAddress2, new { @class = "form-control", cols = "5", rows = "3", @placeholder = @DbRes.T("Residance Address 2", "APMC_Form"), @tabindex = "15" })
+                @Html.TextAreaFor(model => model.ChairmanAddress2, new { @class = "form-control", @style = "height:60px !important", @placeholder = @DbRes.T("Residance Address 2", "APMC_Form"), @tabindex = "15" })
             </div>
         </div>
     </div>
@@ -585,8 +585,7 @@
             $("#SecretaryTalukaId").val($("#ddlddlTaluka_Sec").val());
 
             $("#BankId").val($("#ddlBank").val());
-
-            $('form').submit();
+            APMCform.submit();
         }
     });
 

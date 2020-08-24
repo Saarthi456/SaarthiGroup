@@ -98,17 +98,17 @@ namespace saarthi.Classes
                     if (dt.Columns.Contains("APMCId")) 
                         objFarmer.APMCId = Common.ConvertDBnullToInt64(dt.Rows[0]["APMCId"]);
                     if (dt.Columns.Contains("RefTypeId")) 
-                        objFarmer.RefTypeId = Common.ConvertDBNullToInt(dt.Rows[0]["RefTypeId"]);
+                        objFarmer.FarmerRefTypeId = Common.ConvertDBNullToInt(dt.Rows[0]["RefTypeId"]);
                     if (dt.Columns.Contains("RefNameId")) 
-                        objFarmer.RefNameId = Common.ConvertDBNullToInt(dt.Rows[0]["RefNameId"]);
+                        objFarmer.FarmerRefNameId = Common.ConvertDBNullToInt(dt.Rows[0]["RefNameId"]);
                     if (dt.Columns.Contains("DealInFruit")) 
-                        objFarmer.DealInFruit = Common.ConvertDBNulltoBoolean(dt.Rows[0]["DealInFruit"]);
+                        objFarmer.FarmerDealInFruit = Common.ConvertDBNulltoBoolean(dt.Rows[0]["DealInFruit"]);
                     if (dt.Columns.Contains("DealInVeg")) 
-                        objFarmer.DealInVeg = Common.ConvertDBNulltoBoolean(dt.Rows[0]["DealInVeg"]);
+                        objFarmer.FarmerDealInVeg = Common.ConvertDBNulltoBoolean(dt.Rows[0]["DealInVeg"]);
                     if (dt.Columns.Contains("DealInOther")) 
-                        objFarmer.DealInOther = Common.ConvertDBNulltoBoolean(dt.Rows[0]["DealInOther"]);
+                        objFarmer.FarmerDealInOther = Common.ConvertDBNulltoBoolean(dt.Rows[0]["DealInOther"]);
                     if (dt.Columns.Contains("DealOther")) 
-                        objFarmer.DealOther = Common.ConvertDBnullToString(dt.Rows[0]["DealOther"]);
+                        objFarmer.FarmerDealOther = Common.ConvertDBnullToString(dt.Rows[0]["DealOther"]);
                     if (dt.Columns.Contains("BankId")) 
                         objFarmer.BankId = Common.ConvertDBNullToInt(dt.Rows[0]["BankId"]);
                     if (dt.Columns.Contains("BranchName")) 
@@ -119,6 +119,8 @@ namespace saarthi.Classes
                         objFarmer.AccountNumber = Common.ConvertDBnullToString(dt.Rows[0]["AccountNumber"]);
                     if (dt.Columns.Contains("IFSCCode")) 
                         objFarmer.IFSCCode = Common.ConvertDBnullToString(dt.Rows[0]["IFSCCode"]);
+                    if (dt.Columns.Contains("IMAGELOGO"))
+                        objFarmer.IMAGELOGO = Common.ConvertDBnullToString(dt.Rows[0]["IMAGELOGO"]);
                     if (dt.Columns.Contains("IMAGEAADHAR")) 
                         objFarmer.IMAGEAADHAR = Common.ConvertDBnullToString(dt.Rows[0]["IMAGEAADHAR"]);
                     if (dt.Columns.Contains("IMAGEPAN")) 
@@ -135,9 +137,9 @@ namespace saarthi.Classes
         #endregion
 
         #region CREATE/UPDATE
-        public bool FarmerCRUD(Farmer objFarmer, Enums.Action type)
+        public int FarmerCRUD(Farmer objFarmer, Enums.Action type)
         {
-            bool Return = false;
+            int Return = 0;
             ds = new DataSet();
             cmd = new SqlCommand();
             ObjSQLHelper = new SQLHelper();
@@ -180,28 +182,32 @@ namespace saarthi.Classes
                 cmd.Parameters.AddWithValue("@FarmEmail", objFarmer.FarmEmail);
                 cmd.Parameters.AddWithValue("@IsAPMCAssosiated", objFarmer.IsAPMCAssosiated);
                 cmd.Parameters.AddWithValue("@APMCId", objFarmer.APMCId);
-                cmd.Parameters.AddWithValue("@RefTypeId", objFarmer.RefTypeId);
-                cmd.Parameters.AddWithValue("@RefNameId", objFarmer.RefNameId);
-                cmd.Parameters.AddWithValue("@DealInFruit", objFarmer.DealInFruit);
-                cmd.Parameters.AddWithValue("@DealInVeg", objFarmer.DealInVeg);
-                cmd.Parameters.AddWithValue("@DealInOther", objFarmer.DealInOther);
-                cmd.Parameters.AddWithValue("@DealOther", objFarmer.DealOther);
+                cmd.Parameters.AddWithValue("@RefTypeId", objFarmer.FarmerRefTypeId);
+                cmd.Parameters.AddWithValue("@RefNameId", objFarmer.FarmerRefNameId);
+                cmd.Parameters.AddWithValue("@DealInFruit", objFarmer.FarmerDealInFruit);
+                cmd.Parameters.AddWithValue("@DealInVeg", objFarmer.FarmerDealInVeg);
+                cmd.Parameters.AddWithValue("@DealInOther", objFarmer.FarmerDealInOther);
+                cmd.Parameters.AddWithValue("@DealOther", objFarmer.FarmerDealOther);
                 cmd.Parameters.AddWithValue("@BankId", objFarmer.BankId);
                 cmd.Parameters.AddWithValue("@BranchName", objFarmer.BranchName);
                 cmd.Parameters.AddWithValue("@BranchAddress", objFarmer.BranchAddress);
                 cmd.Parameters.AddWithValue("@AccountNumber", objFarmer.AccountNumber);
                 cmd.Parameters.AddWithValue("@IFSCCode", objFarmer.IFSCCode);
+                cmd.Parameters.AddWithValue("@IMAGELOGO", objFarmer.IMAGELOGO);
                 cmd.Parameters.AddWithValue("@IMAGEAADHAR", objFarmer.IMAGEAADHAR);
                 cmd.Parameters.AddWithValue("@IMAGEPAN", objFarmer.IMAGEPAN);
                 cmd.Parameters.AddWithValue("@IMAGEGST", objFarmer.IMAGEGST);
                 cmd.Parameters.AddWithValue("@StatusId", objFarmer.StatusId);
                 cmd.Parameters.AddWithValue("@UserId", objFarmer.UserId);
+                cmd.Parameters.AddWithValue("@OutputId", SqlDbType.BigInt);
+                cmd.Parameters["@OutputId"].Size = 8;
+                cmd.Parameters["@OutputId"].Direction = ParameterDirection.Output;
 
                 string ProcName = "Farmer_SP";
-                if (ObjSQLHelper.IUDProcData(ProcName, cmd))
+                Return = Common.ConvertDBNullToInt(ObjSQLHelper.IUDProcDataWithOutputParameter(ProcName, cmd));
+                if (Return > 0)
                 {
                     ObjSQLHelper.CommitTransaction();
-                    Return = true;
                 }
                 else
                     ObjSQLHelper.RollBackTransaction();

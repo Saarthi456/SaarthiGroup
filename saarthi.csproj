@@ -157,6 +157,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\clsAPMC.cs" />
     <Compile Include="Classes\clsFarmer.cs" />
+    <Compile Include="Classes\clsUsers.cs" />
     <Compile Include="Classes\clsVendor.cs" />
     <Compile Include="Controllers\APMCController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -2627,6 +2628,7 @@
     <Content Include="Views\Users\_APMC.cshtml" />
     <Content Include="Views\Users\_Vendor.cshtml" />
     <Content Include="Views\Users\_Farmer.cshtml" />
+    <Content Include="Views\Users\ShowCredentials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

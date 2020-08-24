@@ -39,12 +39,17 @@ namespace saarthi.Models
         public string BranchAddress { get; set; }
         public string AccountNumber { get; set; }
         public string IFSCCode { get; set; }
+
+        public string IMAGELOGO { get; set; }
         public string IMAGEAADHAR { get; set; }
         public string IMAGEPAN { get; set; }
         public string IMAGEGST { get; set; }
+
+        public string IMAGE_LOGO { get; set; }
         public string IMAGE_AADHAR { get; set; }
         public string IMAGE_PAN { get; set; }
         public string IMAGE_GST { get; set; }
+
         public int StatusId { get; set; }
     }
 }

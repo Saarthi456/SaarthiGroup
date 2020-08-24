@@ -119,6 +119,8 @@ namespace saarthi.Classes
                         objVendor.AccountNumber = Common.ConvertDBnullToString(dt.Rows[0]["AccountNumber"]);
                     if (dt.Columns.Contains("IFSCCode")) 
                         objVendor.IFSCCode = Common.ConvertDBnullToString(dt.Rows[0]["IFSCCode"]);
+                    if (dt.Columns.Contains("IMAGELOGO"))
+                        objVendor.IMAGELOGO = Common.ConvertDBnullToString(dt.Rows[0]["IMAGELOGO"]);
                     if (dt.Columns.Contains("IMAGEAADHAR")) 
                         objVendor.IMAGEAADHAR = Common.ConvertDBnullToString(dt.Rows[0]["IMAGEAADHAR"]);
                     if (dt.Columns.Contains("IMAGEPAN")) 
@@ -135,9 +137,9 @@ namespace saarthi.Classes
         #endregion
 
         #region CREATE/UPDATE
-        public bool VendorCRUD(Vendor objVendor, Enums.Action type)
+        public int VendorCRUD(Vendor objVendor, Enums.Action type)
         {
-            bool Return = false;
+            int Return = 0;
             ds = new DataSet();
             cmd = new SqlCommand();
             ObjSQLHelper = new SQLHelper();
@@ -192,16 +194,20 @@ namespace saarthi.Classes
                 cmd.Parameters.AddWithValue("@AccountNumber", objVendor.AccountNumber);
                 cmd.Parameters.AddWithValue("@IFSCCode", objVendor.IFSCCode);
                 cmd.Parameters.AddWithValue("@IMAGEAADHAR", objVendor.IMAGEAADHAR);
+                cmd.Parameters.AddWithValue("@IMAGELOGO", objVendor.IMAGELOGO);
                 cmd.Parameters.AddWithValue("@IMAGEPAN", objVendor.IMAGEPAN);
                 cmd.Parameters.AddWithValue("@IMAGEGST", objVendor.IMAGEGST);
                 cmd.Parameters.AddWithValue("@StatusId", objVendor.StatusId);
                 cmd.Parameters.AddWithValue("@UserId", objVendor.UserId);
+                cmd.Parameters.AddWithValue("@OutputId", SqlDbType.BigInt);
+                cmd.Parameters["@OutputId"].Size = 8;
+                cmd.Parameters["@OutputId"].Direction = ParameterDirection.Output;
 
                 string ProcName = "Vendor_SP";
-                if (ObjSQLHelper.IUDProcData(ProcName, cmd))
+                Return = Common.ConvertDBNullToInt(ObjSQLHelper.IUDProcDataWithOutputParameter(ProcName, cmd));
+                if (Return > 0)
                 {
                     ObjSQLHelper.CommitTransaction();
-                    Return = true;
                 }
                 else
                     ObjSQLHelper.RollBackTransaction();
